@@ -15,7 +15,7 @@
             }
             body{
                 background-color: pink;
-                background-image : {% static 'img.jpg' %};
+            
             }
             input[name="username"],[name="roomname"]{
                 border : 1px solid;
@@ -45,7 +45,7 @@
             }
         </style>
     </head>
-<body background = "{% static 'img.jpg' %}">
+<body>
 
     <form method="post" action="check">
         {% csrf_token %}
