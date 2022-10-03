@@ -35,8 +35,8 @@ ipython-genutils==0.2.0
 jedi==0.18.1
 Jinja2==3.1.2
 joblib==1.1.0
-#json5==0.9.10
-#jsonschema==4.16.0
+json5==0.9.10
+jsonschema==4.16.0
 jupyter-core==4.11.1
 jupyter-server==1.18.1
 jupyter_client==7.3.5
@@ -91,6 +91,7 @@ PySocks==1.7.1
 python-dateutil==2.8.2
 pytweening==1.0.4
 pytz==2022.1
+#pywin32==304
 pywin32-ctypes==0.2.0
 pywinpty==2.0.8
 pyzmq==24.0.1
