@@ -24,7 +24,7 @@ dj-database-url==1.0.0
 Django==4.1.1
 django-appconf==1.0.5
 django-geoip==0.5.2.1
-django-geoip2==4.0
+#django-geoip2==4.0
 django-on-heroku==1.1.2
 entrypoints==0.4
 et-xmlfile==1.1.0
