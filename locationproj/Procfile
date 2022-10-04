@@ -1,1 +1,1 @@
-web: gunicorn glacial-badlands-23822.wsgi
+web: gunicorn locationproj.wsgi
