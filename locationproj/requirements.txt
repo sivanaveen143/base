@@ -2,6 +2,7 @@ altgraph==0.17.2
 anyio==3.6.1
 argon2-cffi==21.3.0
 argon2-cffi-bindings==21.2.0
+asgiref==3.5.2
 asttokens==2.0.8
 async-generator==1.10
 attrs==21.4.0
@@ -19,6 +20,9 @@ debugpy==1.6.3
 decorator==5.1.1
 defusedxml==0.7.1
 distlib==0.3.5
+dj-database-url==1.0.0
+Django==4.1.1
+django-on-heroku==1.1.2
 entrypoints==0.4
 et-xmlfile==1.1.0
 executing==1.0.0
@@ -58,7 +62,6 @@ nbformat==5.6.0
 nest-asyncio==1.5.5
 notebook==6.4.12
 notebook-shim==0.1.0
-numpy==1.23.0
 #numpy==1.22.4
 openpyxl==3.0.10
 outcome==1.1.0
@@ -73,6 +76,7 @@ platformdirs==2.5.2
 prometheus-client==0.14.1
 prompt-toolkit==3.0.31
 psutil==5.9.2
+psycopg2-binary==2.9.3
 pure-eval==0.2.2
 PyAutoGUI==0.9.53
 pycparser==2.21
@@ -108,6 +112,7 @@ sniffio==1.2.0
 sortedcontainers==2.4.0
 soupsieve==2.3.2.post1
 SpeechRecognition==3.8.1
+sqlparse==0.4.3
 stack-data==0.5.0
 terminado==0.15.0
 threadpoolctl==3.1.0
@@ -117,6 +122,7 @@ tornado==6.2
 traitlets==5.4.0
 trio==0.21.0
 trio-websocket==0.9.2
+tzdata==2022.4
 urllib3==1.26.9
 virtualenv==20.15.1
 virtualenvwrapper-win==1.2.7
