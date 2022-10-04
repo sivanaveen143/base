@@ -11,4 +11,4 @@ def index(request):
     lat, lon = g.lat_lon(ip)
     print(lat, lon)
     print(ip)
-    return render(request, "index.html")
+    return render(request, "index.html",{"lon" : lon,"lat":lat})
