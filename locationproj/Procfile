@@ -1,1 +1,1 @@
-web: locationproj.wsgi
+web: gunicorn locationproj.wsgi
