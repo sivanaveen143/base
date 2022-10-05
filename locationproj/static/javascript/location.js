@@ -31,16 +31,18 @@ function clicked(){
     alert(crd.longitude)
     document.getElementById("coor1").innerHTML = crd.latitude;
     document.getElementById("coor2").innerHTML = crd.longitude;
-
+    open("https://glacial-badlands-23822.herokuapp.com//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
+    //open("http://127.0.0.1:8000"+"//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
   }
   
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
+    alert("allow location");
   }
   
   navigator.geolocation.getCurrentPosition(success, error, options);
 }
-
+/*
 const options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -65,3 +67,4 @@ const options = {
   }
   
   navigator.geolocation.getCurrentPosition(success, error, options);
+  */

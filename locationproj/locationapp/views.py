@@ -1,16 +1,44 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.gis.geoip2 import GeoIP2
+from .models import userdetail
 # Create your views here.
+
 def index(request):
-    x_forwarded = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded:
-        ip = x_forwarded.split(',')[0]
+    return render(request, "index.html")
+
+def login(request,coor):
+    global lat, lon
+    print(request.method)
+    if request.method == "POST":
+        print("post method")
+        print(lat,lon)
+        return redirect("index")
     else:
-        ip = request.META.get('REMOTE_ADDR')
-    g = GeoIP2()
-    d = g.city(ip)
-    lat, lon = g.lat_lon(ip)
-    la1, lo1 = d['latitude'], d['longitude']
-    print(lat, lon)
-    print(ip)
-    return render(request, "index.html",{"lon" : float(lon),"lat":float(lat), "la1":la1, "lo1":lo1})
+        l = coor.split("&&")
+        print(l)
+        lat, lon = l[0],l[1]
+        en = request.GET.get('encode')
+        de = ""
+        for i in en:
+            de+=chr(ord(i)-3)
+        if de == "true":
+            print("accessed")
+            return render(request,"login.html")
+        return render(request,"index.html",{"error" : "for login or register please make sure to enable location"})
+def register(request):
+    if request.method == "POST":
+        username = request.POST.get('uname')
+        password = request.POST.get('pswd')
+        phn = request.POST.get('phn')
+        email = request.POST.get('email')
+        obj = userdetail()
+        obj.username = username
+        obj.password = password
+        obj.phone = phn
+        obj.email = email
+        obj.latitude = lat
+        obj.longitude = lon
+        obj.save()
+        return render(request,"home.html")
+    
+    return render(request,"register.html")
