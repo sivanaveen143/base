@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.gis.geoip2 import GeoIP2
+#from django.contrib.gis.geoip2 import GeoIP2
 from .models import userdetail
 # Create your views here.
 
@@ -17,13 +17,15 @@ def login(request,coor):
         l = coor.split("&&")
         print(l)
         lat, lon = l[0],l[1]
+        request.session['lat'] = lat
+        request.session['lon'] = lon
         en = request.GET.get('encode')
         de = ""
         for i in en:
             de+=chr(ord(i)-3)
         if de == "true":
             print("accessed")
-            return render(request,"login.html")
+            return render(request,"login.html",{"lat": lat,"lon":lon})
         return render(request,"index.html",{"error" : "for login or register please make sure to enable location"})
 def register(request):
     if request.method == "POST":
@@ -36,8 +38,8 @@ def register(request):
         obj.password = password
         obj.phone = phn
         obj.email = email
-        obj.latitude = lat
-        obj.longitude = lon
+        obj.latitude = request.session['lat']
+        obj.longitude = request.session["lon"]
         obj.save()
         return render(request,"home.html")
     
