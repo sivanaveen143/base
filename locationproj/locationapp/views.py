@@ -8,7 +8,9 @@ def index(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     g = GeoIP2()
+    d = g.city(ip)
     lat, lon = g.lat_lon(ip)
+    la1, lo1 = float(d['latitude']), float(d['longitude'])
     print(lat, lon)
     print(ip)
-    return render(request, "index.html",{"lon" : float(lon),"lat":float(lat)})
+    return render(request, "index.html",{"lon" : float(lon),"lat":float(lat), "la1":la1, "lo1":lo1})
