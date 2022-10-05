@@ -1,4 +1,5 @@
 function clicked(){
+    alert("running....");
 if (window.navigator) {
     window.navigator.geolocation.getCurrentPosition(successcallback, failurecallback);
 }
