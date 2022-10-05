@@ -35,6 +35,10 @@ const options = {
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
     console.log(`More or less ${crd.accuracy} meters.`);
+    alert(crd.longitude)
+    document.getElementById("coor1").innerHTML = crd.latitude;
+    document.getElementById("coor2").innerHTML = crd.longitude;
+
   }
   
   function error(err) {
