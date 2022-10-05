@@ -2,7 +2,11 @@
 if (window.navigator) {
     window.navigator.geolocation.getCurrentPosition(successcallback, failurecallback);
 }
+else{
+    alert("unsuccess...");
+}
 const successcallback = (position) => {
+    alert("success....");
     console.log(position);
     const { latitude, longitude } = position.coords;
     console.log("longitude");
