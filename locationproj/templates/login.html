@@ -1,7 +1,17 @@
-
-
+<center>
+<h3 style="color:red;">{{error}}</h3>
 <form method="post" action="index">
     {% csrf_token %}
+    <input type="text" placeholder="email id" name="email"/><br><br>
+    <input type="password" placeholder="password" name="pswd"/><br><br>
     <input type="submit" value="login"/>
+    
     <p style="font-size:24;"><a href="register">register here</a></p>
+    <br>
 </form>
+<form action="enterotp">
+
+    <input type="submit" value="{{link}}" />
+</form>
+
+</center>

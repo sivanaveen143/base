@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name="index"),
     path('/register',views.register,name="register"),
-    path('/<str:coor>',views.login, name="index")
+    path('/enterotp',views.otpverification,name="otpverification"),
+    path('/<str:coor>',views.login, name="login"),
 ]
