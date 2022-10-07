@@ -1,17 +1,20 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'UI/main.css' %}" />
 <center>
 <h3 style="color:red;">{{error}}</h3>
-<form method="post" action="index">
+<form method="post" action="index" id="login">
     {% csrf_token %}
-    <input type="text" placeholder="email id" name="email"/><br><br>
-    <input type="password" placeholder="password" name="pswd"/><br><br>
-    <input type="submit" value="login"/>
+    <h2>Login</h2>
+    username : <input type="text" placeholder="  email id" name="email"/><br><br>
+    password : <input type="password" placeholder="  password" name="pswd"/><br><br>
+    <p><input type="submit" value="login" id="button"/></p>
     
-    <p style="font-size:24;"><a href="register">register here</a></p>
     <br>
+    <p id="register"><a href="register" >Register</a></p>
 </form>
 <form action="enterotp">
 
-    <input type="submit" value="{{link}}" />
+    <input type="submit" value="{{link}}" id="authenticate"/>
 </form>
 
 </center>
