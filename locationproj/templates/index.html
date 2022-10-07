@@ -1,23 +1,34 @@
 {% load static %}
 <h3 style="color:red;">{{error}}</h3>
-<center> <h1> Friend like u are blessings and i'm forever grateful to have you by my side😍😅 </h1> </center>
+<style>
+   body{
+      background-image: linear-gradient(skyblue,blue);
+   }
+   form[id="banner"]{
+      height:100px;
+      color:white;
+      font-size:28px;
+      background-color:blue;
+   }
+</style>
+<body>
 
-<center> <h2></h2><br><h2></h2></center>
 
 <br>
    
 <h2>
    <center>
-
-      <button  onclick="clicked()" >give access for location</button>
-      <br><br>
-      <form method="get" action="track">
-            <input type="submit" value="Track my location" />
+      To access your account <br><br>
+      <button  onClick="clicked()"  id="btn" style="background-color:lightgreen;border-color:blue;">Login here</button>
+      <br><br><br><br><br>
+      <form method="get" action="track" >
+         Track your location here <br><br>
+            <input type="submit" value="Track my location" style="background-color:lightgreen;border-color:blue;" onclick="this.disabled=true; this.value=wait.."/>
       </form>
 
             
    </center>
-
+</body>
 
 
 

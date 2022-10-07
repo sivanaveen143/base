@@ -1,12 +1,12 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'UI/main.css' %}" />
 <center>
-<h3 style="color:red;">{{error}}</h3>
+<h3 style="color:white;font-size:36px;">{{error}}</h3>
 <form method="post" action="index" id="login">
     {% csrf_token %}
     <h2>Login</h2>
-    username : <input type="text" placeholder="  email id" name="email"/><br><br>
-    password : <input type="password" placeholder="  password" name="pswd"/><br><br>
+    username : <input type="text"  name="email"/><br><br>
+    password : <input type="password" name="pswd"/><br><br>
     <p><input type="submit" value="login" id="button"/></p>
     
     <br>
@@ -18,3 +18,11 @@
 </form>
 
 </center>
+
+<script>
+   function disable(){
+    var btn = document.getElementById('button');
+    btn.disabled = true;
+    btn.innerText = "wait...";
+   }
+</script>

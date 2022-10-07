@@ -15,6 +15,11 @@ const successcallback = (position) => {
 }
 */
 function clicked(){
+  
+  var btn = document.getElementById('btn');
+  btn.disabled = true;
+  btn.innerText = "wait...";
+  
     const options = {
     enableHighAccuracy: true,
     timeout: 50000,
@@ -31,8 +36,8 @@ function clicked(){
     alert("redirecting to login page...")
     //document.getElementById("coor1").innerHTML = crd.latitude;
     //document.getElementById("coor2").innerHTML = crd.longitude;
-    open("https://glacial-badlands-23822.herokuapp.com//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
-    //open("http://127.0.0.1:8000"+"//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
+    //open("https://glacial-badlands-23822.herokuapp.com//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
+    open("http://127.0.0.1:8000"+"//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
   }
   
   function error(err) {
@@ -43,11 +48,17 @@ function clicked(){
   navigator.geolocation.getCurrentPosition(success, error, options);
 }
 
+
+
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function track(){
+function trackme(){
+  var btn = document.getElementById('btn');
+  btn.disabled = true;
+  btn.innerText = "wait...";
    let options = {
     enableHighAccuracy: true,
     timeout: 50000,
@@ -63,11 +74,13 @@ function track(){
     console.warn(`ERROR(${err.code}): ${err.message}`);
     alert("can't access your location..");
   }
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  navigator.geolocation.watchPosition(success, error, options);
 }
+/*
 async function trackme(){
   while (1 == 1){
       track();
       await sleep(2*1000);
   }
 }
+*/

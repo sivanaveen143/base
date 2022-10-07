@@ -1,11 +1,24 @@
 
 {%load static%}
 <br><br><br>
-
-<center>
-    <h1 style="color:blue;">Location</h1><br>
-    <h1>Latitude  : </h1><h1 id="latitude"></h1><br>
-    <h1>Longitude : </h1><h1 id="longitude"></h1>
-    <input type="submit" value="start tracking" onclick="trackme()"/>
+<style>
+    h1[name="lat"]{
+        color: blue;
+    }
+    h1[name="lon"]{
+        color: skyblue;
+    }
+    body{
+        background-image:linear-gradient(skyblue,blue);
+    }
+</style>
+<body>
+    <center>
+    <h1 style="margin-top:30px;">Location</h1><br>
+   
+    <h1 name="lat">Latitude  : </h1><h1 name="lat" id="latitude"></h1><br><br><br>
+    <h1 name="lon">Longitude : </h1><h1 name="lon" id="longitude"></h1>
+    <input type="submit" value="start tracking" onclick="trackme()" id="btn"/>
 </center>
+</body>
 <script type="text/javascript" src = "{% static 'javascript/location.js' %}"></script>
