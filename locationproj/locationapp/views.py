@@ -6,7 +6,8 @@ from .models import userdetail
 def index(request):
     return render(request, "index.html")
 
-
+def track(request):
+    return render(request,"trackme.html")
 def otpverification(request):
     return render(request,"otpverification.html")
 def login(request,coor):

@@ -42,29 +42,32 @@ function clicked(){
   
   navigator.geolocation.getCurrentPosition(success, error, options);
 }
-/*
-const options = {
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function track(){
+   let options = {
     enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
+    timeout: 50000,
+    maximumAge: 10
   };
   
-  function success(pos) {
-    const crd = pos.coords;
-  
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    alert(crd.longitude)
-    document.getElementById("coor1").innerHTML = crd.latitude;
-    document.getElementById("coor2").innerHTML = crd.longitude;
-
+  function success(pos){
+      let coor = pos.coords;
+      document.getElementById('latitude').innerHTML=coor.latitude;
+      document.getElementById('longitude').innerHTML=coor.longitude;
   }
-  
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
+    alert("can't access your location..");
   }
-  
   navigator.geolocation.getCurrentPosition(success, error, options);
-  */
+}
+async function trackme(){
+  while (1 == 1){
+      track();
+      await sleep(2*1000);
+  }
+}

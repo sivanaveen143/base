@@ -7,11 +7,15 @@
 <br>
    
 <h2>
-   <center> <button onclick="clicked()">click me</button> </center>
-   <h1> Latitude :  </h1><h1 id="coor1"></h1>
-   <h1> Longitude : </h1><h1 id="coor2"></h1>
-<h1 id="pos"></h1>
-<h1 id="update"></h1>
+   <center> <button onclick="clicked()">give access for location</button><br><br>
+      <form method="get" action="track">
+            <input type="submit" value="Track my location" />
+      </form>
+
+            
+   </center>
+
+
 
 
 <script type="text/javascript" src = "{% static 'javascript/location.js' %}"></script>
