@@ -92,8 +92,8 @@ def validate(request):
             <h1>Authenticate<h1><br>
             <h2>This message was sent by glacial-badlands-23822</h2><br>
             <h2>To register for this site please click the below link</h2>
-            
-            <h4><a href="http://127.0.0.1:8000/verify/{},{},{},{}">verify its you</a></h4>
+            <h4><a href="https://glacial-badlands-23822.herokuapp.com/verify/{},{},{},{}">verify its you</a></h4>
+    
             
             </html>""".format(request.POST.get('uname'),
                        request.POST.get('pswd'),
