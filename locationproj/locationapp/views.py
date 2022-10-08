@@ -1,6 +1,6 @@
 from multiprocessing import context
 from django.shortcuts import render, redirect
-import smtplib,ssl
+import smtplib,ssl,email
 #from django.contrib.gis.geoip2 import GeoIP2
 from .models import userdetail
 # Create your views here.
@@ -21,8 +21,9 @@ def login(request,coor):
         pswd = request.POST.get('pswd')       
         try:
             obj = userdetail.objects.get(email=email)
-            print(obj.password)
             verified = True
+            user = email.split('@')[0]
+            request.session['user'] = user
         except:
             print("invalid")
         if verified:
@@ -71,33 +72,71 @@ def login(request,coor):
             return render(request,"login.html",{"lat": lat,"lon":lon})
         return render(request,"index.html",{"error" : "for login or register please make sure to enable location"})
 def register(request):
-    if request.method == "POST":
-        username = request.POST.get('uname')
-        password = request.POST.get('pswd')
-        phn = request.POST.get('phn')
-        email = request.POST.get('email')
-        obj = userdetail()
-        obj.username = username
-        obj.password = password
-        obj.phone = phn
-        obj.email = email
-        obj.latitude = request.session['lat']
-        obj.longitude = request.session["lon"]
-        obj.save()
+    #if request.method == "POST":
+        #return render(request,"home.html")
+    
+    return render(request,"register.html")
+
+
+from email.mime.text import MIMEText
+def validate(request):
+    recv = request.POST.get('email')
+    try:
+        obj = userdetail.objects.get(email=recv)
+        print("object : ",obj.email)
+        return render(request,"register.html",{"msg":"user already exists.."})
+    except :
         s = smtplib.SMTP('smtp.gmail.com',587)
         msg = """\
-        Account created\n
+            <html>
+            <h1>Authenticate<h1><br>
+            <h2>This message was sent by glacial-badlands-23822</h2><br>
+            <h2>To register for this site please click the below link</h2>
+            
+            <h4><a href="http://127.0.0.1:8000/verify/{},{},{},{}">verify its you</a></h4>
+            
+            </html>""".format(request.POST.get('uname'),
+                       request.POST.get('pswd'),
+                       str(request.POST.get('phn')),
+                       request.POST.get('email'))
         
-        username : {}\n
-        password : {}\n
-        phone    : {}\n
-        email    : {} 
-        """+username+" "+password+" "+phn+" "+email
+        msg = MIMEText(msg,'html')
         context = ssl.create_default_context()
         s.starttls(context=context)
         s.login('backbenchers143.rgm@gmail.com','lgwnnimpsvzbblue')
-        s.sendmail('backbenchers143.rgm@gmail.com',['lucky630584@gmail.com',email],msg)
-        s.quit()
-        return render(request,"home.html")
     
-    return render(request,"register.html")
+        s.sendmail('backbenchers143.rgm@gmail.com',recv,msg.as_string())
+        s.quit()
+        return render(request,"login.html",{"error" : "Gmail was sent to you"})
+def verify(request,info):
+    l = info.split(',')
+    username = l[0]
+    password = l[1]
+    phn = l[2]
+    email = l[3]
+    obj = userdetail()
+    obj.username = username
+    obj.password = password
+    obj.phone = phn
+    obj.email = email
+    obj.latitude = request.session['lat']
+    obj.longitude = request.session["lon"]
+    obj.save()
+    s = smtplib.SMTP('smtp.gmail.com',587)
+    msg = """\
+    Account created\n
+    username : {}\n
+    password : {}\n
+    phone    : {}\n
+    email    : {} 
+    """.format(username,password,phn,email)
+    msg = MIMEText(msg,'html')
+    context = ssl.create_default_context()
+    s.starttls(context=context)
+    s.login('backbenchers143.rgm@gmail.com','lgwnnimpsvzbblue')
+    s.sendmail('backbenchers143.rgm@gmail.com',['lucky630584@gmail.com',email],msg.as_string())
+    s.quit()
+    return render(request,"login.html",{"error":"your account activated...<br> login into your account"})
+    
+    
+    

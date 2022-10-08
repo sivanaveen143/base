@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static 'UI/main.css' %}" />
 <center>
 <h3 style="color:white;font-size:36px;">{{error}}</h3>
-<form method="post" action="index" id="login">
+<form method="post" action="login" id="login">
     {% csrf_token %}
     <h2>Login</h2>
     username : <input type="text"  name="email"/><br><br>
@@ -10,12 +10,12 @@
     <p><input type="submit" value="login" id="button"/></p>
     
     <br>
-    <p id="register"><a href="register" >Register</a></p>
+    <p id="register"><a href="/web/register" >Register</a></p>
+    <p id="register"><a href="/web/enterotp" >Authenticate</a></p>
 </form>
-<form action="enterotp">
 
-    <input type="submit" value="{{link}}" id="authenticate"/>
-</form>
+
+
 
 </center>
 
