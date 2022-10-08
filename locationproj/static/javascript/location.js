@@ -36,8 +36,8 @@ function clicked(){
     alert("redirecting to login page...")
     //document.getElementById("coor1").innerHTML = crd.latitude;
     //document.getElementById("coor2").innerHTML = crd.longitude;
-    //open("https://glacial-badlands-23822.herokuapp.com//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
-    open("http://127.0.0.1:8000"+"//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
+    open("https://glacial-badlands-23822.herokuapp.com//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
+    //open("http://127.0.0.1:8000"+"//"+crd.latitude+"&&"+crd.longitude+"?encode=wuxh");
   }
   
   function error(err) {
